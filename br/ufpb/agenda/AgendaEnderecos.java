@@ -57,18 +57,4 @@ public class AgendaEnderecos {
         }
         return cont;
     }
-    public String contatoPorEndereco () {
-        int contador = 0;
-        String mensagem = "";
-        while(contContatos > contador) {
-            String cidade = contatos[contador].getEndereco().getCidade();
-            int k = 0;
-            while(k < contatos.length) {
-                if (contatos[k].getEndereco().getCidade().equalsIgnoreCase(cidade)) {
-
-                }
-            }
-        }
-    }
-
 }
