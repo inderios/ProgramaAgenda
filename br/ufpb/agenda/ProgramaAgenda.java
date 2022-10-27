@@ -7,20 +7,26 @@ public class ProgramaAgenda {
         int maxContatos = 1000;
         AgendaEnderecos agenda = new AgendaEnderecos(maxContatos);
         boolean sair = false;
+        Object[] op = {1, 2, 3, 4, 5, 6};
         while (!sair) {
-            int opcao = Integer.parseInt(JOptionPane.showInputDialog(
-                    "Digite uma opção:\n1.Cadastrar contato\n"
+            int opcao = (Integer) (JOptionPane.showInputDialog(null,
+                    "Digite uma opção:\n"
+                            + "1.Cadastrar contato\n"
                             +"2.Pesquisa endereço\n"
                             + "3.Pesquisa número de contatos do bairro\n"
-                            + "4.Apaga contato\n5.Sair\n"));
+                            + "4.Apaga contato\n"
+                            + "5.Todos os contatos\n"
+                            + "6.Sair\n",
+                       "Opções", JOptionPane.PLAIN_MESSAGE, null, op, 1));
             switch(opcao) {
                 case 1:
                     String nome = JOptionPane.showInputDialog("Qual o nome?");
+                    String email = JOptionPane.showInputDialog("E-mail: ");
                     String logradouro = JOptionPane.showInputDialog("Qual o logradouro (Rua, Av...)?");
                     String numero = JOptionPane.showInputDialog("Qual o número?");
                     String bairro = JOptionPane.showInputDialog("Qual o bairro?");
                     Endereco end = new Endereco(logradouro,numero,bairro,"João Pessoa","Paraíba");
-                    Contato c = new Contato(nome, end);
+                    Contato c = new Contato(nome, email, end);
                     agenda.cadastraContato(c);
                     break;
                 case 2:
@@ -37,7 +43,7 @@ public class ProgramaAgenda {
                     int numContatosBairro = agenda.pesquisarQuantidadeDeContatosDoBairro(nomeBairro);
                     JOptionPane.showMessageDialog(null, "Quantidade:"+numContatosBairro);
                     break;
-                case 4:
+                case 4://apaga contatos
                     String nomeContatoApagar = JOptionPane.showInputDialog("Qual o nome do contato?");
                     boolean apagou = agenda.apagaContato(nomeContatoApagar);
                     if (apagou) {
@@ -47,8 +53,14 @@ public class ProgramaAgenda {
                     }
                     break;
                 case 5:
+                    String nomeContato2 =(String) JOptionPane.showInputDialog(null, agenda.todosOsContatos(), "Contato",
+                            JOptionPane.PLAIN_MESSAGE, null, agenda.nomesUsuarios(), agenda.nomesUsuarios()[0]);
+                    JOptionPane.showMessageDialog(null, agenda.pesquisaContato(nomeContato2));
+                    break;
+                case 6:
                     sair = true;
                     break;
+
             }
 
         }

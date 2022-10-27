@@ -57,7 +57,33 @@ public class AgendaEnderecos {
         }
         return cont;
     }
-    public String contatoPorEndereco () {
+//meu codigo
+    public String todosOsContatos(){
+        String todosContatos = "";
+        for(int k = 0; k<contContatos; k++) {
+            todosContatos = todosContatos + System.lineSeparator() + contatos[k].getNome();
+        }
+        return todosContatos;
+    }
+    public String[] nomesUsuarios () {
+        String[] nomesContatos = new String[contContatos];
+        for(int k = 0; k<contContatos; k++) {
+            nomesContatos[k] = contatos[k].getNome();
+        }
+        return nomesContatos;
+    }
+    //o de baixo copiei o da senhora e alterei um pouco.
+    public Contato pesquisaContato(String nomeContato) {
+        Contato contatoProcurado = new Contato();
+        for(int k = 0; k <contContatos; k++) {
+            if(contatos[k].getNome().equalsIgnoreCase(nomeContato)) {
+                contatoProcurado = contatos[k];
+            }
+        }
+        return contatoProcurado;
+    }
+    //eu e kell estavamos tentando criar esse codigo juntos, mas não funciona
+    /*public String contatoPorEndereco () {
         int contador = 0;
         String mensagem = "";
         while(contContatos > contador) {
@@ -69,6 +95,6 @@ public class AgendaEnderecos {
                 }
             }
         }
-    }
+    }*/
 
 }
